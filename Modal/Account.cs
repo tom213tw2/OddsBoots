@@ -3,6 +3,7 @@ using FileHelpers;
 namespace OddsBoots.Modal;
 
 [DelimitedRecord(",")]
+[IgnoreFirst(1)] 
 public class Account
 {
     public int WebId { get; set; }

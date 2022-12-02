@@ -69,29 +69,29 @@ if (accountList.Any())
         workSheet.Cells[$"A{index}:F{index}"].Style.Fill.BackgroundColor.SetColor(Color.Blue);
         workSheet.Cells[$"A{index}:F{index}"].Style.Font.Color.SetColor(Color.White);
 
-
-        for (var i = 0; i < accountData.Count; i++)
+       
+        foreach (var accountDataList in accountData)
         {
-            index += i;
-            workSheet.SetValue(1 + index, 1, accountData[i].Currency);
-            workSheet.Cells[1 + index, 1].Style.Font.Bold = true;
-            workSheet.SetValue(1 + index, 2, $"({accountData[i].CompanyWinLoss})");
-            workSheet.Cells[1 + index, 2].Style.Font.Color.SetColor(Color.Red);
-            workSheet.Cells[1 + index, 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            workSheet.SetValue(1 + index, 3, accountData[i].Percent);
-            workSheet.Cells[1 + index, 3].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            workSheet.SetValue(1 + index, 4, $"({accountData[i].ProfitSharing})");
-            workSheet.Cells[1 + index, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            workSheet.Cells[1 + index, 4].Style.Font.Color.SetColor(Color.Red);
-            workSheet.SetValue(1 + index, 5, $"({accountData[i].Licenes_currency})");
-            workSheet.Cells[1 + index, 5].Style.Font.Color.SetColor(Color.Red);
-            workSheet.Cells[1 + index, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            workSheet.SetValue(1 + index, 6, $"({accountData[i].License_EUR})");
-            workSheet.Cells[1 + index, 6].Style.Font.Color.SetColor(Color.Red);
-            workSheet.Cells[1 + index, 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            index += 1;
+            workSheet.SetValue(index, 1, accountDataList.Currency);
+            workSheet.Cells[index, 1].Style.Font.Bold = true;
+            workSheet.SetValue(index, 2, $"({accountDataList.CompanyWinLoss})");
+            workSheet.Cells[index, 2].Style.Font.Color.SetColor(Color.Red);
+            workSheet.Cells[index, 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            workSheet.SetValue(index, 3,accountDataList.Percent);
+            workSheet.Cells[index, 3].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            workSheet.SetValue(index, 4, $"({accountDataList.ProfitSharing})");
+            workSheet.Cells[index, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            workSheet.Cells[index, 4].Style.Font.Color.SetColor(Color.Red);
+            workSheet.SetValue(index, 5, $"({accountDataList.Licenes_currency})");
+            workSheet.Cells[index, 5].Style.Font.Color.SetColor(Color.Red);
+            workSheet.Cells[index, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            workSheet.SetValue(index, 6, $"({accountDataList.License_EUR})");
+            workSheet.Cells[index, 6].Style.Font.Color.SetColor(Color.Red);
+            workSheet.Cells[index, 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+         
         }
-
-        index += 2;
+        index += 1;
         workSheet.SetValue(index, 1, "Total EUR");
         workSheet.Cells[index, 1].Style.Font.Bold = true;
         workSheet.SetValue(index, 6, $"({licenseEur})");

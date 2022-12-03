@@ -36,7 +36,7 @@ if (accountList.Any())
     var workSheet = package.Workbook.Worksheets.Add("All");
     var index = 0;
     var yyyymm = excelFileName?.Split('_')[1].Replace(new FileInfo(excelFileName).Extension, "");
-    var year = int.Parse(yyyymm?.Substring(0, 4));
+    var year = int.Parse(yyyymm?.Substring(0, 4) ?? string.Empty);
     var month = int.Parse(yyyymm.Substring(4).PadLeft(2, '0'));
     foreach (var item in accountList.Select(s => s.WebId).Distinct())
     {
@@ -75,18 +75,18 @@ if (accountList.Any())
             index += 1;
             workSheet.SetValue(index, 1, accountDataList.Currency);
             workSheet.Cells[index, 1].Style.Font.Bold = true;
-            workSheet.SetValue(index, 2, $"({accountDataList.CompanyWinLoss})");
+            workSheet.SetValue(index, 2, $"({accountDataList.CompanyWinLoss.ConvertStringThousandth()})");
             workSheet.Cells[index, 2].Style.Font.Color.SetColor(Color.Red);
             workSheet.Cells[index, 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
             workSheet.SetValue(index, 3,accountDataList.Percent);
             workSheet.Cells[index, 3].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            workSheet.SetValue(index, 4, $"({accountDataList.ProfitSharing})");
+            workSheet.SetValue(index, 4, $"({accountDataList.ProfitSharing.ConvertStringThousandth()})");
             workSheet.Cells[index, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
             workSheet.Cells[index, 4].Style.Font.Color.SetColor(Color.Red);
-            workSheet.SetValue(index, 5, $"({accountDataList.Licenes_currency})");
+            workSheet.SetValue(index, 5, $"({accountDataList.Licenes_currency.ConvertStringThousandth()})");
             workSheet.Cells[index, 5].Style.Font.Color.SetColor(Color.Red);
             workSheet.Cells[index, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            workSheet.SetValue(index, 6, $"({accountDataList.License_EUR})");
+            workSheet.SetValue(index, 6, $"({accountDataList.License_EUR.ConvertStringThousandth()})");
             workSheet.Cells[index, 6].Style.Font.Color.SetColor(Color.Red);
             workSheet.Cells[index, 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
          
@@ -94,7 +94,7 @@ if (accountList.Any())
         index += 1;
         workSheet.SetValue(index, 1, "Total EUR");
         workSheet.Cells[index, 1].Style.Font.Bold = true;
-        workSheet.SetValue(index, 6, $"({licenseEur})");
+        workSheet.SetValue(index, 6, $"({licenseEur.ConvertStringThousandth()})");
         workSheet.Cells[index, 6].Style.Font.Color.SetColor(Color.Red);
         workSheet.Cells[index, 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
         workSheet.Cells.Style.Font.Size = 16;

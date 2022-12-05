@@ -50,7 +50,7 @@ if (accountList.Any())
 
         index += 1;
         workSheet.SetValue(index, 1,
-            $"{companyName}-Promotion-odds-Boosts REPORT({year}-{month}-01~{year}-{month}-{DateTime.DaysInMonth(year, month)})");
+            $"{companyName}-Promotion-Odds-Boosts REPORT({year}-{month}-01~{year}-{month}-{DateTime.DaysInMonth(year, month)})");
         workSheet.SetValue(index, 2, "");
         workSheet.SetValue(index, 3, "");
         workSheet.SetValue(index, 4, "");
